@@ -39,7 +39,7 @@
     finger: '<path d="M12 11v3a8 8 0 0 1-1.5 4.6"/><path d="M8 11a4 4 0 0 1 8 0v1.5"/><path d="M5 12a7 7 0 0 1 14 0v2"/><path d="M16 15.5a12 12 0 0 1-1 4.5"/><path d="M8.5 14.5a10 10 0 0 1-2 4.5"/><path d="M6.7 5.6A8.9 8.9 0 0 1 12 4a9 9 0 0 1 5.3 1.7"/>',
     shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>',
     bell: '<path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/>',
-    crown: '<path d="M3 8l4 4 5-7 5 7 4-4-2 11H5z"/>',
+    crown: '<path d="M2 4l10 17L22 4"/><path d="M7 4l5 8.5L17 4"/>',
     zap: '<path d="M13 2L3 14h9l-1 8 10-12h-9z"/>',
     link: '<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>',
     upload: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>',
@@ -190,6 +190,7 @@
       files: ['indexing Y: drive…', '+142 files today', 'OCR on drawings'],
       people: ['syncing HR files…', 'licences: 6 expiring', 'reviews: 5 due'],
       comms: ['online', 'listening on SMS', '3 conversations'],
+      reply: ['waiting for a text', 'memory: 9 records', 'tone: firm, polite', 'default answer: no'],
       safety: ['watching incidents', '0 incidents today']
     };
     el.innerHTML = ids.map(id => { const a = CI.agent(id); return `<span class="agent" data-ag="${id}" style="--c:${a.color}"><span class="av" style="color:${a.color};background:${a.color}22">${CI.icon(a.icon, 12)}</span><span class="nm">${a.name}</span><span class="st mono">${lines[id][0]}</span></span>`; }).join('');
@@ -315,7 +316,7 @@
     ];
     const log = $('#boot-log'), bar = $('#boot-bar'), pct = $('#boot-pct'), stage = $('#boot-stage');
     const clockEl = $('#boot-clock'); const ci = setInterval(() => clockEl.textContent = CI.sydTime({ hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }), 250);
-    setTimeout(() => CI.scramble($('#boot-title'), 'CORONATION', 1400), 300);
+    setTimeout(() => CI.scramble($('#boot-title'), 'VIPER', 1400), 300);
     (async () => {
       await CI.sleep(900);
       for (let i = 0; i < lines.length; i++) {
@@ -328,7 +329,7 @@
         await CI.sleep(240 + Math.random() * 220);
       }
       stage.textContent = 'ALL SYSTEMS NOMINAL';
-      const d = document.createElement('div'); d.innerHTML = `<span class="ok">■ CORONATION INTELLIGENCE ONLINE</span>`; log.appendChild(d); if (log.children.length > 7) log.firstChild.remove();
+      const d = document.createElement('div'); d.innerHTML = `<span class="ok">■ VIPER INTELLIGENCE ONLINE</span>`; log.appendChild(d); if (log.children.length > 7) log.firstChild.remove();
       const btn = $('#boot-enter'); btn.classList.add('show');
       const go = () => {
         CI.sfx('open'); boot.classList.add('out'); clearInterval(ci);

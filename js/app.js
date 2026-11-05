@@ -11,7 +11,8 @@
     ['actions', '04', 'Actions', 'check', '3'],
     ['projects', '05', 'Projects', 'building'],
     ['people', '06', 'People', 'users'],
-    ['comms', '07', 'Comms', 'phone']
+    ['comms', '07', 'Comms', 'phone'],
+    ['textbot', '08', 'Textbot', 'sms']
   ];
   $('#nav').innerHTML = `<div class="nav-label">Modules</div>` + NAV.map(([id, n, t, ic, b]) => `<a href="#/${id}" data-r="${id}"><span class="n">${n}</span>${CI.icon(ic, 18)}<span class="t">${t}</span>${b ? `<span class="b">${b}</span>` : ''}</a>`).join('');
   $('.ask-bar .ic-wrap').outerHTML = CI.icon('sparkle', 16);
@@ -41,7 +42,7 @@
     const key = CI.views[name] ? name : 'core';
     $$('#nav a').forEach(a => a.classList.toggle('active', a.dataset.r === key));
     const label = (NAV.find(n => n[0] === key) || NAV[0])[2].toUpperCase();
-    $('#crumb').innerHTML = `CORONATION / <b>${label}</b>${arg && CI.proj(arg) ? ' / <b>' + CI.proj(arg).name.toUpperCase() + '</b>' : ''}`;
+    $('#crumb').innerHTML = `VIPER / <b>${label}</b>${arg && CI.proj(arg) ? ' / <b>' + CI.proj(arg).name.toUpperCase() + '</b>' : ''}`;
     CI.drawer.close();
     const swap = () => {
       if (current && current.destroy) current.destroy();
@@ -58,6 +59,7 @@
 
   const start = () => { $('#app').classList.add('on'); render(); };
   const qs = new URLSearchParams(location.search);
+  if (qs.has('text') && !location.hash) location.hash = '#/textbot';
   if (qs.has('skip')) { $('#boot').remove(); start(); }
   else CI.boot(() => setTimeout(start, 250));
 })();

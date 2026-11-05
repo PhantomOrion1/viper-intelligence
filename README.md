@@ -1,4 +1,4 @@
-# Coronation Intelligence — concept demo
+# Viper Intelligence — concept demo
 
 Clickable preview of an AI operating layer. **All names, figures and documents are placeholders.**
 

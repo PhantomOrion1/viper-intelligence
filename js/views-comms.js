@@ -22,13 +22,13 @@ CI.views.comms = function (el) {
       <div class="ai-box" style="margin-top:18px"><div class="label">${CI.icon('zap', 14)} HOW IT WORKS</div><div style="font-size:13.5px;line-height:1.65;color:var(--mute)">Your message goes to the <b style="color:var(--text)">Comms Bot</b>. It hands the question to the right agent (Watchdog, Minutes Reader, People), then replies in plain English. Anything it sends on your behalf is logged.</div></div>
     </div>
     <div class="phone chat-phone"><div class="phone-notch"></div><div class="phone-screen">
-      <div class="cp-head"><span class="ap">${CI.icon('crown', 20)}</span><b>Coronation AI</b><small><span class="dot" style="width:6px;height:6px"></span>online</small></div>
+      <div class="cp-head"><span class="ap">${CI.icon('crown', 20)}</span><b>Viper AI</b><small><span class="dot" style="width:6px;height:6px"></span>online</small></div>
       <div class="cp-body" id="cb"></div>
       <form class="cp-input" id="cf"><input id="cin" placeholder="Text message" autocomplete="off"><button type="submit">${CI.icon('send', 14)}</button></form>
     </div></div>
     <div class="c-right grid" style="align-content:start">
       <div class="card"><div class="card-h"><span class="label">Channels</span></div>
-        ${[['sms', 'SMS', '+61 4•• ••• 214', 1], ['whatsapp', 'WhatsApp', 'Coronation AI', 1], ['teams', 'Microsoft Teams', '@coronation-ai', 1], ['mail', 'Email', 'ai@coronation (demo)', 0]].map(([ic, n, s, on]) => `<div class="channel"><span class="cav">${CI.icon(ic, 17)}</span><span><div style="font-weight:600;font-size:14px">${n}</div><div class="mono dim" style="font-size:10.5px">${s}</div></span><button class="switch ${on ? 'on' : ''}"></button></div>`).join('')}
+        ${[['sms', 'SMS', '+61 4•• ••• 214', 1], ['whatsapp', 'WhatsApp', 'Viper AI', 1], ['teams', 'Microsoft Teams', '@viper-ai', 1], ['mail', 'Email', 'ai@viper (demo)', 0]].map(([ic, n, s, on]) => `<div class="channel"><span class="cav">${CI.icon(ic, 17)}</span><span><div style="font-weight:600;font-size:14px">${n}</div><div class="mono dim" style="font-size:10.5px">${s}</div></span><button class="switch ${on ? 'on' : ''}"></button></div>`).join('')}
       </div>
       <div class="card"><div class="card-h"><span class="label">Recent broadcasts</span></div>
         ${[['Wet weather: Erskineville pour moved to Thu', 'Site managers · 12', 92], ['Toolbox talk: working at heights', 'All site staff · 186', 74], ['PCG pack: Archer & Albert', 'Project team · 9', 100]].map(([t, s, r]) => `<div class="bc"><div style="display:flex;justify-content:space-between;gap:10px"><b style="font-weight:600;font-size:13.5px">${t}</b><span class="mono dim" style="font-size:10.5px">${r}% READ</span></div><div class="mono dim" style="font-size:10.5px;margin-top:2px">${s.toUpperCase()}</div><div class="rb"><i data-w="${r}"></i></div></div>`).join('')}
@@ -62,6 +62,6 @@ CI.views.comms = function (el) {
   }
   CI.$('.prompt-list', el).onclick = e => { const b = e.target.closest('[data-i]'); if (b) send(convo[+b.dataset.i].q, convo[+b.dataset.i]); };
   CI.$('#cf', el).onsubmit = e => { e.preventDefault(); const v = CI.$('#cin', el).value.trim(); if (!v) return; CI.$('#cin', el).value = ''; send(v); };
-  setTimeout(() => aiSay(['Hi 👋 I’m Coronation AI.', 'Text me anything about your projects, people or inbox.']), 600);
+  setTimeout(() => aiSay(['Hi 👋 I’m Viper AI.', 'Text me anything about your projects, people or inbox.']), 600);
   return { destroy() { alive = false; } };
 };

@@ -265,6 +265,7 @@ window.CI = window.CI || {};
     { id: 'inbox', name: 'Inbox Agent', icon: 'mail', color: '#5b8cff', desc: 'Triages 3 mailboxes', state: '12 new threads' },
     { id: 'files', name: 'File Indexer', icon: 'folder', color: '#3dffa8', desc: 'Keeps Y: drive searchable', state: 'Indexing' },
     { id: 'people', name: 'People Agent', icon: 'users', color: '#ff5ad1', desc: 'Tracks reviews, licences, pay', state: 'Synced' },
+    { id: 'reply', name: 'Reply Agent', icon: 'sms', color: '#5b8cff', desc: 'Drafts replies in your voice', state: 'Ready' },
     { id: 'comms', name: 'Comms Bot', icon: 'phone', color: '#ff7a45', desc: 'Text it like a colleague', state: 'Online' },
     { id: 'safety', name: 'Safety Sentinel', icon: 'shield', color: '#3dffa8', desc: 'Watches incident reports', state: '0 incidents today' }
   ];
@@ -281,6 +282,7 @@ window.CI = window.CI || {};
     ['safety', 'Toolbox talk logged at <b>Nation St Leonards</b> · 38 attendees'],
     ['inbox', 'Client approved façade sample board at <b>Danks St</b>'],
     ['comms', 'Sent site notice to <b>12 site managers</b> · 9 read'],
+    ['reply', 'Drafted a firm “no” to an <b>early payment</b> request from Apex Plumbing'],
     ['minutes', '“Façade junction L4” raised for the <b>4th time</b> — escalated'],
     ['files', 'FFC October uploaded for <b>Mason & Main</b> — handed to Watchdog'],
     ['watch', 'Mason & Main October report compared — <b>2 movements</b>, both explained'],

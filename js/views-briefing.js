@@ -63,7 +63,7 @@ CI.views.briefing = function (el) {
         <div class="phone"><div class="phone-notch"></div><div class="phone-screen lock">
           <div class="lock-date">${new Intl.DateTimeFormat('en-AU', { timeZone: 'Australia/Sydney', weekday: 'long', day: 'numeric', month: 'long' }).format(new Date())}</div>
           <div class="lock-time">6:00</div>
-          <div class="notif" style="--d:.9s"><span class="ap">${CI.icon('crown', 16)}</span><div><div class="h"><b>CORONATION AI</b><span>now</span></div><div class="tt">Your morning brief is ready</div><div class="bd">1 decision needed · 3 overdue actions · $330K unexplained at Archer & Albert</div></div></div>
+          <div class="notif" style="--d:.9s"><span class="ap">${CI.icon('crown', 16)}</span><div><div class="h"><b>VIPER AI</b><span>now</span></div><div class="tt">Your morning brief is ready</div><div class="bd">1 decision needed · 3 overdue actions · $330K unexplained at Archer & Albert</div></div></div>
           <div class="notif" style="--d:1.8s"><span class="ap">${CI.icon('radar', 16)}</span><div><div class="h"><b>WATCHDOG</b><span>5:42am</span></div><div class="tt">Lift claim flagged · 8 Phillip St</div><div class="bd">$0.4M “acceleration” with no instruction on file.</div></div></div>
           <div class="notif" style="--d:2.7s"><span class="ap">${CI.icon('check', 16)}</span><div><div class="h"><b>MINUTES READER</b><span>yesterday</span></div><div class="tt">6 actions from Site Meeting #42</div><div class="bd">Façade junction raised for the 4th time.</div></div></div>
         </div></div>

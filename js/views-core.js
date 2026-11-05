@@ -9,9 +9,10 @@ CI.modules = [
   { id: 'actions', name: 'Actions', icon: 'check', color: '#a283ff', agent: 'Minutes Reader' },
   { id: 'projects', name: 'Projects', icon: 'building', color: '#3dffa8', agent: 'File Indexer' },
   { id: 'people', name: 'People', icon: 'users', color: '#ff5ad1', agent: 'People Agent' },
-  { id: 'comms', name: 'Comms', icon: 'phone', color: '#ff7a45', agent: 'Comms Bot' }
+  { id: 'comms', name: 'Comms', icon: 'phone', color: '#ff7a45', agent: 'Comms Bot' },
+  { id: 'textbot', name: 'Textbot', icon: 'sms', color: '#5b8cff', agent: 'Reply Agent' }
 ];
-CI.agentRoute = { brief: 'briefing', ask: 'ask', watch: 'watchdog', minutes: 'actions', inbox: 'actions', files: 'projects', people: 'people', comms: 'comms', safety: 'people' };
+CI.agentRoute = { brief: 'briefing', ask: 'ask', watch: 'watchdog', minutes: 'actions', inbox: 'actions', files: 'projects', people: 'people', comms: 'comms', safety: 'people', reply: 'textbot' };
 
 CI.views.core = function (el) {
   const name = CI.user.name ? ', ' + CI.esc(CI.user.name) : '';
@@ -43,7 +44,6 @@ CI.views.core = function (el) {
       <div class="core-hello">
         <div class="kicker" style="justify-content:center">NEURAL CORE</div>
         <h1 data-scramble>${CI.greeting()}${name}.</h1>
-        <div class="mute" style="margin-top:6px">Everything across Coronation, connected in one brain.</div>
         <form class="dump" id="dump">
           <input id="dump-in" placeholder="Dump into the brain… or ask anything" autocomplete="off">
           <div class="hint"><span>text · voice · drag a document</span><span style="display:flex;gap:10px;align-items:center">${CI.icon('mic', 14)}${CI.icon('upload', 14)}<span class="kbd">↵</span></span></div>
@@ -111,10 +111,10 @@ CI.views.core = function (el) {
   let W, H, cx, cy, R, rot = 0, tilt = .35, pulses = [], dpr;
   const pos = [];
   function resize() {
-    dpr = Math.min(devicePixelRatio || 1, 2); const r = stage.getBoundingClientRect(); W = r.width; H = r.height;
+    dpr = Math.min(devicePixelRatio || 1, 2); W = stage.clientWidth; H = stage.clientHeight;
     cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     cx = W / 2; cy = H / 2; R = Math.min(W, H) * (W < 600 ? .26 : .29);
-    const rx = Math.min(R * 1.85, W / 2 - 46), ry = Math.min(R * 1.5, H / 2 - 50);
+    const rx = Math.min(R * 1.85, W / 2 - 50), ry = Math.min(R * 1.5, H / 2 - 66);
     nodes.forEach((n, i) => {
       const a = -Math.PI / 2 + i / nodes.length * Math.PI * 2;
       pos[i] = [cx + Math.cos(a) * rx, cy + Math.sin(a) * ry];
@@ -177,9 +177,9 @@ CI.views.core = function (el) {
       if (!pos[i]) return;
       const [dx, dy] = pos[i]; const ang = Math.atan2(dy - cy, dx - cx); const ex = cx + Math.cos(ang) * R * 1.12, ey = cy + Math.sin(ang) * R * 1.12;
       const sx = dx - Math.cos(ang) * 34, sy = dy - Math.sin(ang) * 34; const on = hover === i;
-      ctx.strokeStyle = m.color; ctx.globalAlpha = (on ? 1 : .45) * ei; ctx.lineWidth = on ? 2 : 1.4; ctx.setLineDash([3, 5]); ctx.lineDashOffset = -e / 40;
+      ctx.strokeStyle = m.color; ctx.globalAlpha = (on ? 1 : .2) * ei; ctx.lineWidth = on ? 2 : 1.4; ctx.setLineDash([3, 5]); ctx.lineDashOffset = -e / 40;
       ctx.beginPath(); ctx.moveTo(sx, sy); ctx.lineTo(ex, ey); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = 1;
-      if (Math.random() < (on ? .12 : .025)) pulses.push({ i, p: 0, v: .012 + Math.random() * .01, out: Math.random() < .4 });
+      if (Math.random() < (on ? .12 : .012)) pulses.push({ i, p: 0, v: .012 + Math.random() * .01, out: Math.random() < .4 });
       if (on) {
         ctx.globalCompositeOperation = 'lighter';
         links[i].forEach(j => {
