@@ -754,3 +754,6 @@ h3{font-size:15px;font-weight:600}
 .tb-me{padding:0 12px 12px;display:flex;flex-direction:column;gap:8px}
 @media (max-width:1280px){.tb-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr)}.tb-mem{grid-column:1/-1}}
 @media (max-width:860px){.tb-grid{grid-template-columns:minmax(0,1fr)}.tb-console{min-height:0}}
+
+/* home has its own ask box, so hide the top bar one there */
+.on-core .ask-bar{visibility:hidden;pointer-events:none}

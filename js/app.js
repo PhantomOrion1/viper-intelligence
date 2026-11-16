@@ -32,7 +32,7 @@
     if (CI.askHere) CI.askHere(v); else { CI.pendingQuery = v; location.hash = '#/ask'; }
   };
   addEventListener('keydown', e => {
-    if ((e.key === '/' || (e.key === 'k' && (e.metaKey || e.ctrlKey))) && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) { e.preventDefault(); $('#ask-input').focus(); }
+    if ((e.key === '/' || (e.key === 'k' && (e.metaKey || e.ctrlKey))) && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) { e.preventDefault(); const d = document.body.classList.contains('on-core') && $('#dump-in'); (d || $('#ask-input')).focus(); }
   });
 
   // router
@@ -41,6 +41,7 @@
     const [name, arg] = location.hash.replace(/^#\/?/, '').split('/');
     const key = CI.views[name] ? name : 'core';
     $$('#nav a').forEach(a => a.classList.toggle('active', a.dataset.r === key));
+    document.body.classList.toggle('on-core', key === 'core');
     const label = (NAV.find(n => n[0] === key) || NAV[0])[2].toUpperCase();
     $('#crumb').innerHTML = `VIPER / <b>${label}</b>${arg && CI.proj(arg) ? ' / <b>' + CI.proj(arg).name.toUpperCase() + '</b>' : ''}`;
     CI.drawer.close();
