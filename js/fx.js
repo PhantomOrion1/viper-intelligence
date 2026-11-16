@@ -172,11 +172,17 @@
   CI.askAbout = t => { CI.pendingQuery = `Summarise “${t}”`; location.hash = '#/ask'; };
 
   /* toast */
+  let toastTimer = null, lastToast = '', lastAt = 0;
   CI.toast = function (msg, icon = 'sparkle') {
+    const now = Date.now();
+    if (msg === lastToast && now - lastAt < 1200) return; // ignore rapid duplicates
+    lastToast = msg; lastAt = now;
+    const host = $('#toast'); clearTimeout(toastTimer);
+    host.innerHTML = ''; // only ever one toast on screen
     const t = document.createElement('div'); t.className = 'toast';
     t.innerHTML = `<span style="color:var(--red)">${CI.icon(icon, 16)}</span><span>${msg}</span>`;
-    $('#toast').appendChild(t); CI.sfx('ok');
-    setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 400); }, 3000);
+    host.appendChild(t); CI.sfx('ok');
+    toastTimer = setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 400); }, 2600);
   };
 
   /* agent strip — shows which AI agents are working on this screen */
